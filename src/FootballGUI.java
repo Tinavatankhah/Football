@@ -21,6 +21,7 @@ public class FootballGUI extends JFrame{
 
 	private void addGuiComponents() {
 		JButton spainBtn=new JButton(loadImage("src/assets/la-liga-logo-.jpg"));
+
 		spainBtn.setBounds(20, 10,160, 100);
 		spainBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(spainBtn);
