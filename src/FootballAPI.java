@@ -106,7 +106,7 @@ public class FootballAPI {
 	            URL url= new URL(urlString);
 	            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	            conn.setRequestMethod("GET");
-	            conn.setRequestProperty("x-rapidapi-key","f52db1114b2d80e1e563c0402e7980c3");
+	            conn.setRequestProperty("x-apisports-key","f52db1114b2d80e1e563c0402e7980c3");
 	            conn.setRequestProperty("x-rapidapi-host", "v3.football.api-sports.io");
 	            conn.connect();
 	            return conn;

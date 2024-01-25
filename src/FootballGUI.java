@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -33,52 +35,58 @@ public class FootballGUI extends JFrame implements ActionListener {
 
 	private void addGuiComponents() {
 		
-		JButton spainBtn=new JButton("spainBtn",loadImage("src/assets/la-liga-logo-.jpg"));
+		JButton spainBtn=new JButton("spainBtn",loadImage("src/assets/141.png"));
 		spainBtn.setBounds(20, 10,160, 100);
 		spainBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(spainBtn);
 		spainBtn.addActionListener(this);
 		
-		JButton englandBtn=new JButton("englandBtn",loadImage("src/assets/premierleague.png"));
+		JButton englandBtn=new JButton("englandBtn",loadImage("src/assets/40.png"));
 		englandBtn.setBounds(210, 10,160, 100);
 		englandBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(englandBtn);
 		englandBtn.addActionListener(this);
 		
-		JButton italyBtn=new JButton("italyBtn",loadImage("src/assets/logo-serie-a.jpg"));
+		JButton italyBtn=new JButton("italyBtn",loadImage("src/assets/135.png"));
 		italyBtn.setBounds(400, 10,160, 100);
 		italyBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(italyBtn);
 		italyBtn.addActionListener(this);
 		
-		JButton iranBtn=new JButton("iranBtn",loadImage("src/assets/iran.jpg"));
+		JButton iranBtn=new JButton("iranBtn",loadImage("src/assets/495.png"));
 		iranBtn.setBounds(20, 130,160, 100);
 		iranBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(iranBtn);
 		iranBtn.addActionListener(this);
 		
-		JButton germanyBtn=new JButton("germanyBtn",loadImage("src/assets/bundesliga-logo-1024x683.png"));
+		JButton germanyBtn=new JButton("germanyBtn",loadImage("src/assets/78.png"));
 		germanyBtn.setBounds(210,130,160, 100);
 		germanyBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(germanyBtn);
 		germanyBtn.addActionListener(this);
 		
-		JButton franceBtn=new JButton("franceBtn",loadImage("src/assets/franceLigue1.jpg"));
+		JButton franceBtn=new JButton("franceBtn",loadImage("src/assets/61.png"));
 		franceBtn.setBounds(400, 130,160, 100);
 		franceBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(franceBtn);
 		franceBtn.addActionListener(this);
 		
-		JButton worldCupBtn=new JButton("worldCupBtn",loadImage("src/assets/worldCup1.png"));
+		JButton worldCupBtn=new JButton("worldCupBtn",loadImage("src/assets/15.png"));
 		worldCupBtn.setBounds(90, 260,400, 100);
 		worldCupBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(worldCupBtn);
 		worldCupBtn.addActionListener(this);
-		
-	
-      
-		
-	
+
+
+		Map<String,JButton> leagueButtonMap =new HashMap<>();
+		leagueButtonMap.put("61",franceBtn);
+		leagueButtonMap.put("495",iranBtn);
+		leagueButtonMap.put("141",spainBtn);
+		leagueButtonMap.put("78",germanyBtn);
+		leagueButtonMap.put("135",italyBtn);
+		leagueButtonMap.put("40",englandBtn);
+		leagueButtonMap.put("15",worldCupBtn);
+
 		jLabel=new JLabel("salam");
 		jLabel.setBounds(0, 200, 1000, 800);
 		jLabel.setFont(new Font("Dialog" , Font.PLAIN, 18));
