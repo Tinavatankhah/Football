@@ -87,12 +87,12 @@ public class FootballGUI extends JFrame implements ActionListener {
 		leagueButtonMap.put("40",englandBtn);
 		leagueButtonMap.put("15",worldCupBtn);
 
-		jLabel=new JLabel("salam");
+/*		jLabel=new JLabel("salam");
 		jLabel.setBounds(0, 200, 1000, 800);
 		jLabel.setFont(new Font("Dialog" , Font.PLAIN, 18));
 		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		jLabel.setForeground(Color.RED);
-		add(jLabel);
+		add(jLabel); */
 	}
 
 	private Icon loadImage(String resourcePath) {
@@ -111,8 +111,24 @@ public class FootballGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String choice = e.getActionCommand().toString();
 		
-		
-	        jLabel.setText("Computer: " +  footballAPI.getLeagueData(choice));
+	    DefaultTableModel model = new DefaultTableModel();
+	    JTable table = new JTable(model);
+        table.setPreferredScrollableViewportSize(new Dimension(500, 200));
+	    table.setFillsViewportHeight(true);
+	    
+	    JScrollPane scrollPane = new JScrollPane(table);
+	    scrollPane.setBounds(20, 380, 550, 250);
+	    add(scrollPane);
+
+	    
+	    model.addColumn("Column 1");
+	   model.addColumn("Column 2");
+
+	    model.addRow(new Object[]{choice, footballAPI.getLeagueData(choice)});
+
+	    revalidate();
+	    repaint();
+	      //  jLabel.setText("Computer: " +  footballAPI.getLeagueData(choice));
 	
 		
 	}
