@@ -14,6 +14,8 @@ import org.json.simple.JSONArray;
 
 public class FootballGUI extends JFrame implements ActionListener {
 	FootballAPI footballAPI=new FootballAPI();
+
+
 	JLabel jLabel;
 	
 	   private JTable footballTable;
@@ -35,64 +37,59 @@ public class FootballGUI extends JFrame implements ActionListener {
 
 	private void addGuiComponents() {
 		
-		JButton spainBtn=new JButton("spainBtn",loadImage("src/assets/141.png"));
+		JButton spainBtn=new JButton("spainBtn",loadImage("src/assets/141.1.jpg"));
 		spainBtn.setBounds(20, 10,160, 100);
 		spainBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(spainBtn);
 		spainBtn.addActionListener(this);
 		
-		JButton englandBtn=new JButton("englandBtn",loadImage("src/assets/40.png"));
+		JButton englandBtn=new JButton("englandBtn",loadImage("src/assets/40.1.png"));
 		englandBtn.setBounds(210, 10,160, 100);
 		englandBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(englandBtn);
 		englandBtn.addActionListener(this);
 		
-		JButton italyBtn=new JButton("italyBtn",loadImage("src/assets/135.png"));
+		JButton italyBtn=new JButton("italyBtn",loadImage("src/assets/135.1.jpg"));
 		italyBtn.setBounds(400, 10,160, 100);
 		italyBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(italyBtn);
 		italyBtn.addActionListener(this);
 		
-		JButton iranBtn=new JButton("iranBtn",loadImage("src/assets/495.png"));
+		JButton iranBtn=new JButton("iranBtn",loadImage("src/assets/290.jpg"));
 		iranBtn.setBounds(20, 130,160, 100);
 		iranBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(iranBtn);
 		iranBtn.addActionListener(this);
 		
-		JButton germanyBtn=new JButton("germanyBtn",loadImage("src/assets/78.png"));
+		JButton germanyBtn=new JButton("germanyBtn",loadImage("src/assets/78.1.png"));
 		germanyBtn.setBounds(210,130,160, 100);
 		germanyBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(germanyBtn);
 		germanyBtn.addActionListener(this);
 		
-		JButton franceBtn=new JButton("franceBtn",loadImage("src/assets/61.png"));
+		JButton franceBtn=new JButton("franceBtn",loadImage("src/assets/61.1.png"));
 		franceBtn.setBounds(400, 130,160, 100);
 		franceBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(franceBtn);
 		franceBtn.addActionListener(this);
 		
-		JButton worldCupBtn=new JButton("worldCupBtn",loadImage("src/assets/15.png"));
+		JButton worldCupBtn=new JButton("worldCupBtn",loadImage("src/assets/15.1.png"));
 		worldCupBtn.setBounds(90, 260,400, 100);
 		worldCupBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(worldCupBtn);
 		worldCupBtn.addActionListener(this);
 
 
-		Map<String,JButton> leagueButtonMap =new HashMap<>();
-		leagueButtonMap.put("61",franceBtn);
-		leagueButtonMap.put("495",iranBtn);
-		leagueButtonMap.put("141",spainBtn);
-		leagueButtonMap.put("78",germanyBtn);
-		leagueButtonMap.put("135",italyBtn);
-		leagueButtonMap.put("40",englandBtn);
-		leagueButtonMap.put("15",worldCupBtn);
 
-/*		jLabel=new JLabel("salam");
+
+	/*	jLabel=new JLabel("salam");
 		jLabel.setBounds(0, 200, 1000, 800);
 		jLabel.setFont(new Font("Dialog" , Font.PLAIN, 18));
 		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		jLabel.setForeground(Color.RED);
-		add(jLabel); */
+		add(jLabel);
+
+	 */
 	}
 
 	private Icon loadImage(String resourcePath) {
@@ -111,7 +108,7 @@ public class FootballGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String choice = e.getActionCommand().toString();
 		
-	    DefaultTableModel model = new DefaultTableModel();
+	   DefaultTableModel model = new DefaultTableModel();
 	    JTable table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(500, 200));
 	    table.setFillsViewportHeight(true);
@@ -129,7 +126,7 @@ public class FootballGUI extends JFrame implements ActionListener {
 	    revalidate();
 	    repaint();
 	      //  jLabel.setText("Computer: " +  footballAPI.getLeagueData(choice));
-	
+
 		
 	}
 	

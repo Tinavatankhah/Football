@@ -7,6 +7,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import javax.swing.text.html.parser.Parser;
+
 public class FootballAPI {
 	String urlString;
 	private String choice;
@@ -27,11 +29,21 @@ public class FootballAPI {
 			}
 			else
 			{
-				
-				
-				
-				
-					
+				StringBuilder resultJson= new StringBuilder();
+				Scanner scanner = new Scanner(conn.getInputStream());
+
+				while (scanner.hasNext()){
+					resultJson.append(scanner.nextLine());
+				}
+
+				scanner.close();
+				conn.disconnect();
+
+				JSONParser parser= new JSONParser();
+				JSONObject resultJsonObj= (JSONObject) parser.parse(String.valueOf(resultJson));
+
+				JSONArray response=(JSONArray) resultJsonObj.get("response");
+				System.out.println(response);
 			}
 		}catch(Exception e)
 		{
@@ -41,41 +53,41 @@ public class FootballAPI {
 }
 
 	public JSONArray getLeagueData(String choice) {
-		String urlString="";
-	
+
+	String leagueId="";
 		switch(choice)
 		{
 		case "spainBtn": 
-		urlString= "https://v3.football.api-sports.io/leagues";
+		leagueId="141";
 			 
 	    break;
-		case "englandBtn": 
-			urlString= "https://v3.football.api-sports.io/leagues";
+		case "englandBtn":
+			leagueId="39";
 			 
 	    break;
-		case "italyBtn": 
-			  urlString= "https://v3.football.api-sports.io/leagues";
+		case "italyBtn":
+			leagueId="135";
 			 
 	    break;
-		case "iranBtn": 
-			 urlString = "https://v3.football.api-sports.io/leagues";
+		case "iranBtn":
+			leagueId="290";
 			 
 	    break;
-		case "germanyBtn": 
-			 urlString =  "https://v3.football.api-sports.io/leagues";
+		case "germanyBtn":
+			leagueId="78";
 	    break;
-		case "franceBtn": 
-			 urlString =  "https://v3.football.api-sports.io/leagues";
+		case "franceBtn":
+			leagueId="61";
 			 
 	    break;
-		case "worldCupBtn": 
-			 urlString =  "https://v3.football.api-sports.io/leagues";
+		case "worldCupBtn":
+			leagueId="15";
 	    break;
 	    default:
 	    	System.out.println("error!!!");
 	    	break;
 		}
-	
+		 urlString="https://v3.football.api-sports.io/fixtures/rounds?season=2019&league="+leagueId;
 		 HttpURLConnection conn = fetchApiResponse(urlString);
 		    if(conn != null)
 
@@ -96,10 +108,10 @@ public class FootballAPI {
 		        } catch (IOException e) {
 		            e.printStackTrace();
 		        }
-		       
+
 		    }
 			return null;
-			
+
 	}
 	 private static HttpURLConnection fetchApiResponse(String urlString){
 	        try{
