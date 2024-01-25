@@ -42,8 +42,29 @@ public class FootballAPI {
 				JSONParser parser= new JSONParser();
 				JSONObject resultJsonObj= (JSONObject) parser.parse(String.valueOf(resultJson));
 
-				JSONArray response=(JSONArray) resultJsonObj.get("response");
-				System.out.println(response);
+				JSONObject status=(JSONObject)resultJsonObj.get("status");
+
+				JSONObject teams=(JSONObject)resultJsonObj.get("teams");
+				JSONObject home=(JSONObject) teams.get("home");
+				JSONObject away=(JSONObject) teams.get("away");
+				JSONObject goals=(JSONObject) resultJsonObj.get("goals");
+
+                JSONArray name= (JSONArray) home.get("name");
+				JSONArray winner= (JSONArray) away.get("winner");
+				JSONArray name2= (JSONArray) away.get("name");
+				JSONArray winner2= (JSONArray) away.get("winner");
+
+				JSONArray numberOfGoals=(JSONArray) goals.get("home");
+				JSONArray numberOfGoals2=(JSONArray) goals.get("away");
+
+
+				JSONArray referee=(JSONArray) resultJsonObj.get("referee");
+
+				JSONArray date=(JSONArray) resultJsonObj.get("date");
+
+				JSONArray shortStatus =(JSONArray) status.get("short");
+
+
 			}
 		}catch(Exception e)
 		{
@@ -87,7 +108,7 @@ public class FootballAPI {
 	    	System.out.println("error!!!");
 	    	break;
 		}
-		 urlString="https://v3.football.api-sports.io/fixtures/rounds?season=2019&league="+leagueId;
+		 urlString="https://v3.football.api-sports.io/fixtures?league="+leagueId+"&season=2023";
 		 HttpURLConnection conn = fetchApiResponse(urlString);
 		    if(conn != null)
 
@@ -113,6 +134,8 @@ public class FootballAPI {
 			return null;
 
 	}
+
+
 	 private static HttpURLConnection fetchApiResponse(String urlString){
 	        try{
 	            URL url= new URL(urlString);
