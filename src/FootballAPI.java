@@ -42,29 +42,34 @@ public class FootballAPI {
 				JSONParser parser= new JSONParser();
 				JSONObject resultJsonObj= (JSONObject) parser.parse(String.valueOf(resultJson));
 
-				JSONObject status=(JSONObject)resultJsonObj.get("status");
+				JSONArray response= (JSONArray) resultJsonObj.get("response");
+				for(Object fixture: response) {
+	JSONObject fixtures =(JSONObject) fixture;
 
-				JSONObject teams=(JSONObject)resultJsonObj.get("teams");
-				JSONObject home=(JSONObject) teams.get("home");
-				JSONObject away=(JSONObject) teams.get("away");
-				JSONObject goals=(JSONObject) resultJsonObj.get("goals");
-
-                JSONArray name= (JSONArray) home.get("name");
-				JSONArray winner= (JSONArray) away.get("winner");
-				JSONArray name2= (JSONArray) away.get("name");
-				JSONArray winner2= (JSONArray) away.get("winner");
-
-				JSONArray numberOfGoals=(JSONArray) goals.get("home");
-				JSONArray numberOfGoals2=(JSONArray) goals.get("away");
+	JSONObject teams = (JSONObject) fixtures.get("teams");
+	JSONObject homeTeam = (JSONObject) teams.get("home");
+					String nameHTeam = (String) homeTeam.get("name");
+					boolean winnerHTeam= (boolean) homeTeam.get("winner");
+	JSONObject awayTeam = (JSONObject) teams.get("away");
+					String nameATeam = (String) awayTeam.get("name");
+					boolean winnerATeam= (boolean) awayTeam.get("winner");
 
 
-				JSONArray referee=(JSONArray) resultJsonObj.get("referee");
-
-				JSONArray date=(JSONArray) resultJsonObj.get("date");
-
-				JSONArray shortStatus =(JSONArray) status.get("short");
+	JSONObject fixturesInfo= (JSONObject) fixtures.get("fixture");
+	String referee = (String) fixturesInfo.get("referee");
 
 
+
+	JSONObject goals = (JSONObject) fixtures.get("goals");
+int hTeamGoals= (int) goals.get("home");
+int aTeamGoals =(int) goals.get("away");
+
+JSONObject status= (JSONObject) fixturesInfo.get("status");
+String shortStatus= (String) status.get("short");
+
+String date= (String) fixturesInfo.get("date");
+
+}
 			}
 		}catch(Exception e)
 		{
