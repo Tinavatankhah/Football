@@ -43,8 +43,9 @@ public class FootballAPI {
 				JSONObject resultJsonObj= (JSONObject) parser.parse(String.valueOf(resultJson));
 
 				JSONArray response= (JSONArray) resultJsonObj.get("response");
-				for(Object fixture: response) {
-	JSONObject fixtures =(JSONObject) fixture;
+
+				for(int i=1;i< response.toArray().length;i++) {
+	JSONObject fixtures =(JSONObject) response.get(i);
 
 	JSONObject teams = (JSONObject) fixtures.get("teams");
 	JSONObject homeTeam = (JSONObject) teams.get("home");
@@ -59,7 +60,6 @@ public class FootballAPI {
 	String referee = (String) fixturesInfo.get("referee");
 
 
-
 	JSONObject goals = (JSONObject) fixtures.get("goals");
 int hTeamGoals= (int) goals.get("home");
 int aTeamGoals =(int) goals.get("away");
@@ -69,7 +69,17 @@ String shortStatus= (String) status.get("short");
 
 String date= (String) fixturesInfo.get("date");
 
+JSONObject total= new JSONObject();
+total.put("match",i);
+total.put("date",date);
+total.put("team A name",nameHTeam);
+total.put("team B name",nameATeam);
+total.put("team A goals",hTeamGoals);
+total.put("team B goals", aTeamGoals);
+total.put("referee",referee);
 
+//resultJson.append("match:"+i+" date:"+date+" first team name:"+ nameHTeam+ " second team name:"+ nameATeam +" status:"+ status+" first team goals:"+ hTeamGoals+" second team goals:"+ aTeamGoals+ " referee:"+ referee);
+return total;
 }
 			}
 		}catch(Exception e)

@@ -84,7 +84,9 @@ private JSONObject leagueData;
 		worldCupBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				leagueData= footballAPI.getFootballData();
+				JSONObject total= footballAPI.getFootballData();
+String referee = (String) total.get("referee");
+leagueMatches.setText(referee);
 			}
 		});
 
