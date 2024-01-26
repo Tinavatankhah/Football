@@ -11,16 +11,16 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.simple.JSONObject; 
 
 public class FootballGUI extends JFrame implements ActionListener {
 	FootballAPI footballAPI=new FootballAPI();
-private JSONObject leagueData;
+
 
 	JLabel jLabel;
 	
-	  // private JTable footballTable;
-	   // private DefaultTableModel tableModel;
+	   private JTable footballTable;
+	    private DefaultTableModel tableModel;
 
 	
 	
@@ -37,9 +37,6 @@ private JSONObject leagueData;
 	}
 
 	private void addGuiComponents() {
-		JTextArea leagueMatches=new JTextArea();
-		leagueMatches.setBounds(20,380,550,200);
-		add(leagueMatches);
 		
 		JButton spainBtn=new JButton("spainBtn",loadImage("src/assets/141.1.jpg"));
 		spainBtn.setBounds(20, 10,160, 100);
@@ -81,26 +78,9 @@ private JSONObject leagueData;
 		worldCupBtn.setBounds(90, 260,400, 100);
 		worldCupBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(worldCupBtn);
-		worldCupBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JSONObject total= footballAPI.getFootballData();
-String referee = (String) total.get("referee");
-leagueMatches.setText(referee);
-			}
-		});
+		worldCupBtn.addActionListener(this);
 
 
-
-
-	/*	jLabel=new JLabel("salam");
-		jLabel.setBounds(0, 200, 1000, 800);
-		jLabel.setFont(new Font("Dialog" , Font.PLAIN, 18));
-		jLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		jLabel.setForeground(Color.RED);
-		add(jLabel);
-
-	 */
 	}
 
 	private Icon loadImage(String resourcePath) {
@@ -117,28 +97,34 @@ leagueMatches.setText(referee);
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String choice = e.getActionCommand().toString();
-		
-	  /* DefaultTableModel model = new DefaultTableModel();
+	    String choice = e.getActionCommand().toString();
+
+	    DefaultTableModel model = new DefaultTableModel();
 	    JTable table = new JTable(model);
-        table.setPreferredScrollableViewportSize(new Dimension(500, 200));
+	    table.setPreferredScrollableViewportSize(new Dimension(500, 200));
 	    table.setFillsViewportHeight(true);
-	    
+
 	    JScrollPane scrollPane = new JScrollPane(table);
 	    scrollPane.setBounds(20, 380, 550, 250);
 	    add(scrollPane);
 
+	    model.addColumn("Country");
+	    model.addColumn("Home Team Goals");
+	    model.addColumn("Away Team Goals");
+	  
+	    model.addColumn("Date");
+
+/*	    JTextArea leagueMatches=new JTextArea();
+		leagueMatches.setBounds(20,380,550,200);
+		add(leagueMatches);
 	    
-	   model.addColumn("Column 1");
-	   model.addColumn("Column 2");
+	 */
+	    int homeTeamGoals = 3; 
+	    int awayTeamGoals = 1; 
+	    
+	    String date = "2024-01-26"; 
 
-	    model.addRow(new Object[]{choice, footballAPI.getLeagueData(choice)});
-
-	    revalidate();
-	    repaint();
-	      //  jLabel.setText("Computer: " +  footballAPI.getLeagueData(choice));
-*/
-		
+	    model.addRow(new Object[]{choice, homeTeamGoals, awayTeamGoals, date});
 	}
 	
 }
