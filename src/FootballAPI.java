@@ -69,6 +69,7 @@ String shortStatus= (String) status.get("short");
 
 String date= (String) fixturesInfo.get("date");
 
+
 }
 			}
 		}catch(Exception e)

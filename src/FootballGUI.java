@@ -10,16 +10,17 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import org.json.simple.JSONArray; 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class FootballGUI extends JFrame implements ActionListener {
 	FootballAPI footballAPI=new FootballAPI();
-
+private JSONObject leagueData;
 
 	JLabel jLabel;
 	
-	   private JTable footballTable;
-	    private DefaultTableModel tableModel;
+	  // private JTable footballTable;
+	   // private DefaultTableModel tableModel;
 
 	
 	
@@ -36,6 +37,9 @@ public class FootballGUI extends JFrame implements ActionListener {
 	}
 
 	private void addGuiComponents() {
+		JTextArea leagueMatches=new JTextArea();
+		leagueMatches.setBounds(20,380,550,200);
+		add(leagueMatches);
 		
 		JButton spainBtn=new JButton("spainBtn",loadImage("src/assets/141.1.jpg"));
 		spainBtn.setBounds(20, 10,160, 100);
@@ -77,7 +81,12 @@ public class FootballGUI extends JFrame implements ActionListener {
 		worldCupBtn.setBounds(90, 260,400, 100);
 		worldCupBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(worldCupBtn);
-		worldCupBtn.addActionListener(this);
+		worldCupBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				leagueData= footballAPI.getFootballData();
+			}
+		});
 
 
 
@@ -108,7 +117,7 @@ public class FootballGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String choice = e.getActionCommand().toString();
 		
-	   DefaultTableModel model = new DefaultTableModel();
+	  /* DefaultTableModel model = new DefaultTableModel();
 	    JTable table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(500, 200));
 	    table.setFillsViewportHeight(true);
@@ -118,7 +127,7 @@ public class FootballGUI extends JFrame implements ActionListener {
 	    add(scrollPane);
 
 	    
-	    model.addColumn("Column 1");
+	   model.addColumn("Column 1");
 	   model.addColumn("Column 2");
 
 	    model.addRow(new Object[]{choice, footballAPI.getLeagueData(choice)});
@@ -126,7 +135,7 @@ public class FootballGUI extends JFrame implements ActionListener {
 	    revalidate();
 	    repaint();
 	      //  jLabel.setText("Computer: " +  footballAPI.getLeagueData(choice));
-
+*/
 		
 	}
 	
